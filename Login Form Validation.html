@@ -1,0 +1,162 @@
+<html>
+
+<head>
+    <title>Assignment3/ HTML Form</title>
+    <script type="text/javascript">
+        function submitForm(form) {
+			var flag=0;
+            var nameVar = document.form.name.value;
+			{
+				if((nameVar.search(/[^A-Za-z\s]/) != -1)){
+					alert("Enter a Valid Name");
+					flag=1;
+				}
+			}
+		    document.getElementById("name").innerHTML = "Name: " + nameVar;
+			
+            var dateVar = document.form.dob.value;
+            document.getElementById("dob").innerHTML = "DOB: " + dateVar;
+
+            var genderVar = document.form.gender.value;
+			for(var i=0;i<3;i++){
+				if(form.gender[i].checked){
+					genderVar= form.gender[i].value;
+					break;
+				}
+			}
+            document.getElementById("gender").innerHTML = "Gender: " + genderVar;
+
+            var addressVar = document.form.address.value;
+			if(addressVar=="" || addressVar==null){
+				alert("***Address cannot be blank***");
+				flag=1;
+				}
+            document.getElementById("address").innerHTML = "Address: " + addressVar;
+				
+            var idVar = document.form.id.value;
+			if(isNaN(idVar)){
+				alert("Id should be Numeric");
+				flag=1;
+				}
+			else if(idVar.length!=5){
+				alert("Id should be 5 numbers long");
+				flag=1;
+				}
+            document.getElementById("id").innerHTML = "ID: " + idVar;
+
+            var rollNoVar = document.form.roll_number.value;
+			if(isNaN(rollNoVar)){
+				alert("Roll Number should be Numeric");
+				flag=1;
+				}
+			else if(rollNoVar.length!=6){
+				alert("Roll Number should be 6 numbers long");
+				flag=1;
+				}
+            document.getElementById("roll_no").innerHTML = "Roll No: " + rollNoVar;
+			
+			var emailVar = document.form.email.value;
+			if(emailVar.indexOf("@")<1 || emailVar.lastIndexOf(".")<emailVar.indexOf("@")+2 || emailVar.lastIndexOf(".")+2>=emailVar.length){
+				alert("**Invalid email**");
+				flag=1;
+				}
+			document.getElementById("email").innerHTML = "Email : " + emailVar;
+			
+            var s1 = document.getElementsByName("course")[0];
+            var courseVar = s1.options[s1.selectedIndex].text;
+            document.getElementById("course").innerHTML = "Course: " + courseVar;
+
+            var s2 = document.getElementsByName("year")[0];
+            var yearVar = s2.options[s2.selectedIndex].text;
+            document.getElementById("year").innerHTML = "Year: " + yearVar;
+
+            var items = document.getElementsByName("preferences");
+            var preferenceVar = "";
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].type == "checkbox" && items[i].checked == true)
+                    preferenceVar += items[i].value + ", ";
+            }
+            document.getElementById("preferences").innerHTML = "Cultural club preferences: " + preferenceVar;
+			if(flag==0)
+				alert("Form Submitted Successfully...");
+			else
+				alert("Error in one or more Input Fields");
+        }
+
+        function resetForm(form) {
+            document.getElementById("name").innerHTML = "";
+            document.getElementById("dob").innerHTML = "";
+            document.getElementById("gender").innerHTML = "";
+            document.getElementById("address").innerHTML = "";
+            document.getElementById("id").innerHTML = "";
+			document.getElementById("email").innerHTML = "";
+            document.getElementById("roll_no").innerHTML = "";
+            document.getElementById("course").innerHTML = "";
+            document.getElementById("year").innerHTML = "";
+            document.getElementById("preferences").innerHTML = "";
+        }
+    </script>
+</head>
+
+<body bgcolor="cyan">
+   <center>
+	<h1 style="color:Green">SIGN UP FORM</h1>
+    <form action="GET" name="form">
+        <label for="name">Name:</label><br>
+        <input type="text" placeholder="Enter Your Name" name="name" id="name"><br><br>
+         <label for="dob">DOB:</label><br>
+        <input type="date" name="dob" id="dob"><br><br>
+        <label for="gender" name="gender" >Gender:</label><br>
+        <input type="radio" name="gender" value="Male">Male
+        <input type="radio" name="gender" value="Female">Female
+		<input type="radio" name="gender" value="Other">Other<br><br>
+         <label for="address">Address:</label><br>
+        <input type="text" placeholder="Enter your Address" name="address" id="address"><br><br>
+        <label for="id"> ID:</label><br>
+        <input type="text" placeholder="Enter Your ID" name="id" id="id"><br><br>
+         <label for="roll_number">Roll number:</label><br>		
+        <input type="text" placeholder="Enter Your Roll Number"  name="roll_number" id="roll_number"><br><br>
+		 <label for="email">Email:</label><br>
+		<input type="text" placeholder="Enter Email Address" name="email" id="email"><br><br>
+         <label for="course">Course:</label><br>
+        <select name="course">
+		    <option value=" " selected disabled>Choose Your Course</option>
+            <option value="B.Sc (Hons.)Compter Science">B.Sc (Hons.)Compter Science</option>
+            <option value="B.Sc Mathematical Sciences">B.Sc Mathematical Sciences</option>
+            <option value="B.Com Programme">B.Com Programme</option>
+            <option value="B.A. Programme">B.A. Programme</option>
+            <option value="B.A. Political Sience">B.A. Political Sience</option>
+        </select> <br><br>
+        <label for="year"> Year:</label><br>
+        <select name="year">
+		    <option value=" " selected disabled>Choose Study Year</option>
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+			<option value="4th">4th</option>
+        </select><br><br>
+         <label for="preferences">Cultural club preferences:<br>
+        <input type="checkbox" name="preferences" value="Dance">Dance
+        <input type="checkbox" name="preferences" value="Music">Music
+        <input type="checkbox" name="preferences" value="Art">Art
+        <input type="checkbox" name="preferences" value="Poetry">Poetry <br><br>
+        <input type="button" name="button1" value="Submit" onClick="submitForm(this.form)">
+        <input type="reset" name="button2" value="Reset" onClick="resetForm(this.form)">
+    </form>
+   </center>
+    <hr />
+    <br>
+    <p id="name"></p>
+    <p id="dob"></p>
+    <p id="gender"></p>
+    <p id="address"></p>
+    <p id="id"></p>
+    <p id="roll_no"></p>
+	<p id="email"></p>
+    <p id="course"></p>
+    <p id="year"></p>
+    <p id="preferences"></p>
+
+</body>
+
+</html>

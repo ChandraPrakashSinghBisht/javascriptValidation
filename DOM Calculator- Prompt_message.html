@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>
+**JAVASCRIPT CALCULATOR**
+</title>
+<script = "text/javascript">
+do{
+var number1=prompt("\nEnter value for Number 1");
+var number2=prompt("\nEnter value for Number 2");
+var exp = prompt("Enter your operator(+,-,*,/,%,--,++)\nInput \'x\' to exit..."); 
+number1 = parseFloat (number1);
+number2 = parseFloat (number2);
+
+switch(exp){
+case '+' :	alert(number1+" + "+number2+" = " + parseFloat((+number1+ +number2)).toFixed(2) );
+			break;
+case '-' : 	alert(number1+" - "+number2+" = " + parseFloat((number1-number2)).toFixed(2) );
+			break;
+case '*' : alert(number1+" * "+number2+" = " + parseFloat((number1*number2)).toFixed(2) );
+			break;
+case '/' : alert(number1+" / "+number2+" = " + parseFloat((number1/number2)).toFixed(2) );
+			 break;
+case '%' : alert(number1 % number2);  break;
+case '--' : alert(number1 +" changes to "+parseFloat(--number1)+"\n"+number2 +" changes to "+parseFloat(--number2));
+			break;
+case '++' : alert(number1 +" changes to "+parseFloat(++number1)+"\n"+number2 +" changes to "+parseFloat(++number2));
+			break;
+ default : alert("**Enter a Valid Input**"); 
+}
+}while(exp!='x');
+</script>
+</head>
+</html>
